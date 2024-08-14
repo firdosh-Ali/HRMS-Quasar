@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-defineOptions({
+ defineOptions({
   name: 'ErrorNotFound'
-});
+ });
 </script>

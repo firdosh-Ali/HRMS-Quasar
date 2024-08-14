@@ -12,10 +12,11 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          HRMS-Management
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+
+        <q-btn @click="logout" label="Logout" flat />
       </q-toolbar>
     </q-header>
 
@@ -25,17 +26,29 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
+        <q-item-label header>
+          <h5><b> HR-Human Resource</b></h5>
         </q-item-label>
 
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item clickable v-ripple @click="goToDashboard">
+          <q-item-section avatar>
+            <q-icon name="dashboard" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Dashboard</q-item-label>
+            <q-item-label caption>View dashboard</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="goToProfile">
+          <q-item-section avatar>
+            <q-icon name="person" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Profile</q-item-label>
+            <q-item-label caption>View profile</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -46,61 +59,59 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { useQuasar } from 'quasar';
+import {onMounted, ref} from 'vue'
+import axios from "axios";
+import { useRouter } from 'vue-router';
 
-defineOptions({
-  name: 'MainLayout'
-})
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
+const $q = useQuasar();
+const router = useRouter();
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false);
+
 
 function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const goToDashboard = () => {
+  router.push('/dashboard');
+};
+const goToProfile = () => {
+  router.push('/dashboard/profile');
+};
+
+const fetchUserData = async () => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/api/user', {
+      headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+    });
+  } catch (error) {
+    router.push('/login');
+
+  }
+};
+
+const logout = async () => {
+  try {
+   const response =  await axios.post('http://127.0.0.1:8000/api/logout', {}, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`
+      }
+    });
+if(response.data.status=== true) {
+  $q.notify({type: 'positive', message: 'Logged out successfully'});
+  localStorage.removeItem('authToken');
+  router.push('/login');
 }
+  } catch (error) {
+    $q.notify({ type: 'negative', message: 'Failed to logout' });
+  }
+};
+
+onMounted(() => {
+  fetchUserData();
+});
+
 </script>
