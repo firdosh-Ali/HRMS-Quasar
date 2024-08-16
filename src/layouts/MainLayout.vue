@@ -80,6 +80,16 @@
           </q-item-section>
         </q-item>
 
+        <q-item clickable v-ripple @click="goToHolidaysPage">
+          <q-item-section avatar>
+            <q-icon name="holiday" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Holidays</q-item-label>
+            <q-item-label>View Holidays</q-item-label>
+          </q-item-section>
+        </q-item>
+
 
       </q-list>
     </q-drawer>
@@ -123,8 +133,13 @@ const goToHRPolicy = () => {
 }
 
 const goToEmailPage = () => {
-  router.push('/dashboard/EmailPage')
+  router.push('/dashboard/EmailPage');
 }
+
+const goToHolidaysPage = () => {
+  router.push('/dashboard/HolidaysPage');
+}
+
 
 const fetchUserData = async () => {
   try {

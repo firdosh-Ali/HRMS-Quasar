@@ -24,6 +24,7 @@ const routes = [
       { path: 'daily-update', component: () => import('pages/DailyUpdate.vue')},
       { path: 'HRPolicy', component: () => import('pages/HRPolicy.vue')},
       { path: 'EmailPage', component: () => import('pages/EmailPage.vue')},
+      { path: 'HolidaysPage', component: () => import('pages/HolidaysPage.vue')}
     ]
   },
 
