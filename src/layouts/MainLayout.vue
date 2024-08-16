@@ -49,6 +49,38 @@
             <q-item-label caption>View profile</q-item-label>
           </q-item-section>
         </q-item>
+
+        <q-item clickable v-ripple @click="goToDailyUpdate">
+          <q-item-section avatar>
+            <q-icon name="menu_book" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Daily Update</q-item-label>
+            <q-item-label caption>View daily-update</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="goToHRPolicy">
+          <q-item-section avatar>
+            <q-icon name="assignment" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>HR Policy</q-item-label>
+            <q-item-label caption>View hr policy</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="goToEmailPage">
+          <q-item-section avatar>
+            <q-icon name="email" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Send Email</q-item-label>
+            <q-item-label caption>View Send Email</q-item-label>
+          </q-item-section>
+        </q-item>
+
+
       </q-list>
     </q-drawer>
 
@@ -81,6 +113,18 @@ const goToDashboard = () => {
 const goToProfile = () => {
   router.push('/dashboard/profile');
 };
+
+const goToDailyUpdate = () => {
+  router.push('/dashboard/daily-update');
+}
+
+const goToHRPolicy = () => {
+  router.push('/dashboard/HRPolicy');
+}
+
+const goToEmailPage = () => {
+  router.push('/dashboard/EmailPage')
+}
 
 const fetchUserData = async () => {
   try {

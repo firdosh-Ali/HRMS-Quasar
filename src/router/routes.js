@@ -21,6 +21,9 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/DashboardPage.vue') },
       { path: 'profile', component: () => import('pages/ProfilePage.vue') },
+      { path: 'daily-update', component: () => import('pages/DailyUpdate.vue')},
+      { path: 'HRPolicy', component: () => import('pages/HRPolicy.vue')},
+      { path: 'EmailPage', component: () => import('pages/EmailPage.vue')},
     ]
   },
 

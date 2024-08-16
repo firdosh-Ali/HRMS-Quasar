@@ -1,13 +1,13 @@
 <template>
   <q-dialog v-model="isDialogOpen" persistent>
-    <q-card>
+    <q-card style="min-width: 600px; max-width: 800px;">
       <q-card-section>
         <div class="q-mb-md text-h5">Edit User</div>
-        <q-input v-model="formData.name" label="Name" />
-        <q-input v-model="formData.address" label="Address" />
-        <q-input v-model="formData.contact" label="Contact" />
-        <q-input v-model="formData.email" label="Email" />
-        <q-input v-model="formData.date_of_birth" label="Date of Birth" type="date" />
+        <q-input v-model="formData.name" label="Name" class="q-mb-xs"/>
+        <q-input v-model="formData.address" label="Address" class="q-mb-xs"/>
+        <q-input v-model="formData.contact" label="Contact" class="q-mb-xs" />
+        <q-input v-model="formData.email" label="Email" class="q-mb-xs" />
+        <q-input v-model="formData.date_of_birth" label="Date of Birth" type="date" class="q-mb-xs"/>
       </q-card-section>
       <q-card-actions>
         <q-btn label="Cancel" color="negative" @click="closeDialog" />
