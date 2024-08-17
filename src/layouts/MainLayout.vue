@@ -82,7 +82,7 @@
 
         <q-item clickable v-ripple @click="goToHolidaysPage">
           <q-item-section avatar>
-            <q-icon name="holiday" />
+            <q-icon name="event" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Holidays</q-item-label>

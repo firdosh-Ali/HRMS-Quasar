@@ -1,10 +1,11 @@
 <template>
 
   <q-page class="q-pa-md">
-    <div class="q-mb-md text-h5 text-center">
-      <u>  Ambition Guru Employee Details </u>
+    <div class="DashBoard-page full-height full-width">
+      <div class="header text-h4 text-center q-pa-md">
+        Ambition Guru Employee Details
+      </div>
     </div>
-
     <div v-if="users.length">
       <q-table
         :rows="users"
@@ -132,3 +133,10 @@ onMounted(() => {
   fetchUsers();
 });
 </script>
+
+<style scoped>
+.DashBoard-page {
+  background-color: dodgerblue;
+  color:white;
+}
+</style>

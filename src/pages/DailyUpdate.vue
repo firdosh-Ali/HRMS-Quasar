@@ -1,10 +1,12 @@
 <template>
   <q-page padding>
 
-    <div class="q-mb-md text-h5 text-center">
-      <u>  Daily Updates </u>
+    <div class="DailyUpdate-page full-height full-width">
+      <div class="header text-h4 text-center q-pa-md">
+        Daily Updates
+      </div>
     </div>
-
+<br>
   <div class="row items-lg-center">
     <q-btn
       round
@@ -195,3 +197,11 @@ closeForm();
 onMounted(fetchActivities);
 
 </script>
+
+
+<style scoped>
+.DailyUpdate-page {
+  background-color: dodgerblue;
+  color:white;
+}
+</style>
